@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ui/layout/app-sidebar";
+import AppShell from "@/components/ui/layout/app-shell";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -34,12 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <html lang="en">
+      <body
+  className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+>
+  <AppShell>{children}</AppShell>
+</body>
+    </html>
   );
 }
