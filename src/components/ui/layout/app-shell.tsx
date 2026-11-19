@@ -1,10 +1,11 @@
 'use client'
 
+import { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ui/layout/app-sidebar";
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
+function Shell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // halaman login & register: tanpa sidebar
@@ -21,5 +22,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
     </SidebarProvider>
+  );
+}
+
+export default function AppShell({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={null}>
+      <Shell>{children}</Shell>
+    </Suspense>
   );
 }
